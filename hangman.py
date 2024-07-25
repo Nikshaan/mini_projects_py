@@ -107,7 +107,7 @@ words = ['ANT', 'BABOON', 'BADGER', 'BAT', 'BEAR', 'BEAVER', 'CAMEL', 'CAT', 'CL
 
 def playhangman(list):
 
-    p, hm = 0, 0
+    p, incorrect_count = 0, 0 # p = player's points
     blank, wrong = [], []
     word = random.choice(list)
 
@@ -119,7 +119,7 @@ def playhangman(list):
     while p < 6:
 
         guess = input("Enter your letter: ")
-        c = 0
+        c = 0 # c = computer's points
 
         for i in range(len(blank)):
             if word[i] == guess.upper():
@@ -129,9 +129,9 @@ def playhangman(list):
         if c == 0:
             wrong.append(guess.upper())
             p += 1
-            hm += 1
+            incorrect_count += 1
 
-        figure(hm)
+        figure(incorrect_count)
 
         print("Your word: ", "".join(blank))
 
@@ -142,10 +142,9 @@ def playhangman(list):
         print("Wrong guesses till now: ", wrong)
 
 
-        if p == 6 or len(wrong) == 6:
+        if p == 6 :
             print("All guesses are Over!")
             print("The word was: ", word)
-            p = 6
 
         print("You have ", (6 - p), " guesses left.")
 
