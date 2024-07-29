@@ -5,21 +5,34 @@ import random
 
 def playgame(score1=0, score2=0):
 
-    user_card1value = random.randrange(1, 11)
-    user_card2value = random.randrange(1, 11)
+    # considering ace as 1 only
+
+    deck = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10]
+
+    user_card1value = random.choice(deck)
+    deck.remove(user_card1value)
+    user_card2value = random.choice(deck)
+    deck.remove(user_card2value)
     user_cardtotal = user_card1value+user_card2value
     print("Your cards value adds upto: ", user_cardtotal)
-    bot_card1value = random.randrange(1, 11)
-    bot_card2value = random.randrange(1, 11)
+
+    bot_card1value = random.choice(deck)
+    deck.remove(bot_card1value)
+    bot_card2value = random.choice(deck)
+    deck.remove(bot_card2value)
     bot_cardtotal = bot_card1value+bot_card2value
 
     while True:
         choice = input("HIT or STAND: ").lower()
+
         if choice == "hit":
-            bot_newcard = random.randrange(1, 11)
-            user_newcard = random.randrange(1, 11)
+            bot_newcard = random.choice(deck)
+            deck.remove(bot_newcard)
+            user_newcard = random.choice(deck)
+            deck.remove(user_newcard)
             bot_cardtotal += bot_newcard
             user_cardtotal += user_newcard
+
             print("New cards value is: ", user_cardtotal)
             if user_cardtotal > 21:
                 print("BUST! You lose!")
